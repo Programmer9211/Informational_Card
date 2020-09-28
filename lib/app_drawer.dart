@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'Dialoges.dart';
+
 class AppDrawer extends StatelessWidget {
   String name;
 
@@ -84,30 +86,7 @@ class AppDrawer extends StatelessWidget {
                   color: Colors.purple[900],
                 ),
                 () => showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18)),
-                          title: Text(
-                            'Not Available',
-                            style: TextStyle(
-                                color: Colors.purple[900],
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          content: Text(
-                            'we will fix this in next update',
-                            style: TextStyle(
-                                color: Colors.purple[900],
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          actions: [
-                            FlatButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: Text('OK')),
-                          ],
-                        ))),
+                    context: context, builder: (context) => Dialoges())),
 
             //
 

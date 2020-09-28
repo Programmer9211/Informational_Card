@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Dialoges.dart';
+
 class Appbar extends StatefulWidget {
   @override
   _AppbarState createState() => _AppbarState();
@@ -11,6 +13,7 @@ class _AppbarState extends State<Appbar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        key: UniqueKey(),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         backgroundColor: Colors.white,
         title: val == 0
@@ -41,30 +44,7 @@ class _AppbarState extends State<Appbar> {
                 IconButton(
                     icon: Icon(Icons.search),
                     onPressed: () => showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
-                              title: Text(
-                                'Not Available',
-                                style: TextStyle(
-                                    color: Colors.purple[900],
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              content: Text(
-                                'we will fix this in next update',
-                                style: TextStyle(
-                                    color: Colors.purple[900],
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              actions: [
-                                FlatButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: Text('OK')),
-                              ],
-                            ))),
+                        context: context, builder: (context) => Dialoges())),
                 IconButton(
                     icon: Icon(Icons.cancel),
                     onPressed: () {

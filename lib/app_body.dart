@@ -9,27 +9,20 @@ class Body extends StatefulWidget {
   TextEditingController controller1;
   TextEditingController controller2;
   TextEditingController controller3;
-  bool pressed;
 
   List<List<String>> info;
+  List<Color> colors;
 
-  String name = "Name";
+  Body(this.controller, this.controller1, this.controller2, this.controller3,
+      this.info, this.colors);
 
-  Body(
-    this.controller,
-    this.controller1,
-    this.controller2,
-    this.controller3,
-    this.info,
-  );
+  final String name = "Name";
 
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
-  Color colors = Colors.black;
-
   Widget poupmenubutton(int index) {
     return PopupMenuButton(
         itemBuilder: (context) => [
@@ -115,17 +108,18 @@ class _BodyState extends State<Body> {
           } else if (value == 2) {
             setState(() {
               widget.info.removeAt(index);
+              widget.colors.removeAt(index);
             });
           } else if (value == 3) {
             setState(() {
-              if (colors == Colors.black) {
-                colors = Colors.red;
-              } else if (colors == Colors.red) {
-                colors = Colors.purple[900];
-              } else if (colors == Colors.purple[900]) {
-                colors = Colors.green;
-              } else if (colors == Colors.green) {
-                colors = Colors.black;
+              if (widget.colors[index] == Colors.black) {
+                widget.colors[index] = Colors.red;
+              } else if (widget.colors[index] == Colors.red) {
+                widget.colors[index] = Colors.purple[900];
+              } else if (widget.colors[index] == Colors.purple[900]) {
+                widget.colors[index] = Colors.green;
+              } else if (widget.colors[index] == Colors.green) {
+                widget.colors[index] = Colors.black;
               }
             });
           } else if (value == 4) {
@@ -157,6 +151,7 @@ class _BodyState extends State<Body> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      key: UniqueKey(),
       drawer: AppDrawer(widget.name),
       backgroundColor: Colors.blue[200],
       body: SafeArea(
@@ -189,7 +184,7 @@ class _BodyState extends State<Body> {
                     width: width,
                     alignment: Alignment.center,
                     child: Text(
-                      'Add Profile',
+                      'Add Profiles',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -229,7 +224,7 @@ class _BodyState extends State<Body> {
                                                 "Name : ${widget.info[index][0].toString()}",
                                                 style: TextStyle(
                                                     fontSize: 18,
-                                                    color: colors,
+                                                    color: widget.colors[index],
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -254,7 +249,7 @@ class _BodyState extends State<Body> {
                                                 "\nProfession : ${widget.info[index][3].toString()}\n",
                                                 style: TextStyle(
                                                     fontSize: 18,
-                                                    color: colors,
+                                                    color: widget.colors[index],
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -295,7 +290,8 @@ class _BodyState extends State<Body> {
                                 widget.controller1,
                                 widget.controller2,
                                 widget.controller3,
-                                widget.info))))
+                                widget.info,
+                                widget.colors))))
               ],
             ),
           ),

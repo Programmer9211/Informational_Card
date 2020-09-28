@@ -27,12 +27,15 @@ class _HomePageState extends State<HomePage> {
 
   List<List<String>> info = [];
 
+  List<Color> colors = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[100],
       drawer: AppDrawer(""),
-      body: Body(controller, controller1, controller2, controller3, info),
+      body:
+          Body(controller, controller1, controller2, controller3, info, colors),
     );
   }
 }

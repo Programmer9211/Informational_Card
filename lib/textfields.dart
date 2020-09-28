@@ -9,9 +9,10 @@ class Cards extends StatelessWidget {
   TextEditingController controller3;
 
   List<List<String>> info;
+  List<Color> colors = [];
 
   Cards(this.controller, this.controller1, this.controller2, this.controller3,
-      this.info);
+      this.info, this.colors);
 
   @override
   Widget textField(String name, TextEditingController cont, int length) {
@@ -73,13 +74,14 @@ class Cards extends StatelessWidget {
                   controller2.text,
                   controller3.text
                 ]);
+                colors.add(Colors.black);
                 //snackBar("Profile Added Sucessfully...");
                 print(info.length);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => Body(controller, controller1,
-                            controller2, controller3, info)));
+                            controller2, controller3, info, this.colors)));
                 controller.clear();
                 controller1.clear();
                 controller2.clear();
